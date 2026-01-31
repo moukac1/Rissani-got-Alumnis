@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-
+  # Service MySQL
   mysql:
     image: mysql:8.0
     container_name: mysqlData
@@ -21,16 +21,17 @@ services:
       timeout: 5s
       retries: 5
 
+  # Service Backend
   backend:
     build:
       context: ./connect
       dockerfile: Dockerfile
-    image: backend-image-Rissani
-    container_name: my-backend-Rissani
+    image: backend-image-rissani
+    container_name: my-backend-rissani
     ports:
       - "8082:8082"
     networks:
-      - myyy-network  # ✅ Corrigé (était myyy-network)
+      - myyy-network
     depends_on:
       mysql:
         condition: service_healthy
@@ -41,27 +42,32 @@ services:
       DB_PASSWORD: "00000"
       DB_NAME: rissani_connect
 
+  # Service Frontend
   frontend:
     image: node:22-alpine
     container_name: frontend
     working_dir: /usr/src/app
     volumes:
       - ./rissani-connect:/usr/src/app
-      - /usr/src/app/node_modules  # ✅ Évite les conflits
+      - /usr/src/app/node_modules
     ports:
-      - "8080:8080"  # ✅ Guillemets corrects
+      - "8080:8080"
     networks:
-      - myyy-network  
+      - myyy-network
     depends_on:
       - backend
-    command: sh -c "npm install && npm run dev"  
+    environment:
+      - VITE_API_URL=http://localhost:8082/api
+    command: sh -c "npm install && npm run dev"
     stdin_open: true
     tty: true
 
 networks:
-  myy-network:
+  myyy-network:
     driver: bridge
 
 volumes:
   mysql-data:
     driver: local
+
+
