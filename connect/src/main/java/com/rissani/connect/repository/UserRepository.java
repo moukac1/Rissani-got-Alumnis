@@ -19,6 +19,7 @@ public interface UserRepository extends JpaRepository<User, String> {
                     .nom("Admin")
                     .prenom("System")
                     .email("admin.mouad@rissani.com")
+                    .numTelephone("06")
                     .password(passwordEncoder.encode("Admin123!"))
                     .role(User.Role.ADMIN)
                     .statut(User.Statut.EMPLOYE)

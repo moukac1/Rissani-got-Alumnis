@@ -24,6 +24,7 @@ public class AdminInitializerService {
                     .nom("Rissani")
                     .prenom("Admin")
                     .email("admin.mouad@rissani.com")
+                    .numTelephone("06")
                     .password(passwordEncoder.encode("Admin123!"))
                     .role(com.rissani.connect.entity.User.Role.ADMIN)
                     .statut(com.rissani.connect.entity.User.Statut.EMPLOYE)

@@ -26,8 +26,15 @@ import java.util.List;
 public class User implements UserDetails {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(length = 36)
     private String id;
+
+    @PrePersist
+    public void prePersist() {
+        if (id == null) {
+            id = java.util.UUID.randomUUID().toString();
+        }
+    }
 
     @Column(nullable = false)
     private String nom;

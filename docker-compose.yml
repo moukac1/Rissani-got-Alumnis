@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   mysql:
     image: mysql:8.0
@@ -33,6 +35,7 @@ services:
       mysql:
         condition: service_healthy
     environment:
+      SPRING_PROFILES_ACTIVE: prod
       DB_HOST: mysqlData
       DB_PORT: 3306
       DB_USER: root
@@ -65,3 +68,4 @@ networks:
 volumes:
   mysql-data:
     driver: local
+
