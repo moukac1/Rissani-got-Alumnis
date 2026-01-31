@@ -1,10 +1,8 @@
-version: '3.8'
-
 services:
-  # Service MySQL
   mysql:
     image: mysql:8.0
     container_name: mysqlData
+    command: --default-authentication-plugin=mysql_native_password
     environment:
       MYSQL_ROOT_PASSWORD: "00000"
       MYSQL_DATABASE: rissani_connect
@@ -13,15 +11,14 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql
       - ./backup.sql:/docker-entrypoint-initdb.d/backup.sql
-    networks:
-      - myyy-network
     healthcheck:
       test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p00000"]
       interval: 10s
       timeout: 5s
       retries: 5
+    networks:
+      - myyy-network
 
-  # Service Backend
   backend:
     build:
       context: ./connect
@@ -42,7 +39,6 @@ services:
       DB_PASSWORD: "00000"
       DB_NAME: rissani_connect
 
-  # Service Frontend
   frontend:
     image: node:22-alpine
     container_name: frontend
@@ -69,5 +65,3 @@ networks:
 volumes:
   mysql-data:
     driver: local
-
-

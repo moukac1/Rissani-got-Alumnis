@@ -1,4 +1,4 @@
-/*
+
 package com.rissani.connect.service;
 
 import com.rissani.connect.repository.UserRepository;
@@ -19,11 +19,11 @@ public class AdminInitializerService {
     public void initAdmin() {
         System.out.println("⏳ Vérification de l'administrateur...");
 
-        if (userRepository.findByEmail("admin@rissani.com").isEmpty()) {
+        if (userRepository.findByEmail("mouad.admin@rissani.com").isEmpty()) {
             com.rissani.connect.entity.User admin = com.rissani.connect.entity.User.builder()
                     .nom("Rissani")
                     .prenom("Admin")
-                    .email("admin@rissani.com")
+                    .email("mouad.admin@rissani.com")
                     .password(passwordEncoder.encode("Admin123!"))
                     .role(com.rissani.connect.entity.User.Role.ADMIN)
                     .statut(com.rissani.connect.entity.User.Statut.EMPLOYE)
@@ -32,7 +32,7 @@ public class AdminInitializerService {
 
             userRepository.save(admin);
             System.out.println("✅ ADMIN CRÉÉ AVEC SUCCÈS !");
-            System.out.println("📧 Email: admin@rissani.com");
+            System.out.println("📧 Email: mouad.admin@rissani.com");
             System.out.println("🔑 Mot de passe: Admin123!");
             System.out.println("⚠️ CHANGEZ CE MOT DE PASSE IMMÉDIATEMENT !");
         } else {
@@ -40,4 +40,3 @@ public class AdminInitializerService {
         }
     }
 }
-*/

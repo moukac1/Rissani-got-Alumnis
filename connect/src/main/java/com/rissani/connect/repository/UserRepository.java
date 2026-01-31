@@ -12,7 +12,7 @@ public interface UserRepository extends JpaRepository<User, String> {
     Optional<User> findByEmail(String email);
 
     boolean existsByEmail(String email);
-    /*
+
     default void createAdminIfNotExists(org.springframework.security.crypto.password.PasswordEncoder passwordEncoder) {
         if (findByEmail("admin@rissani.com").isEmpty()) {
             User admin = User.builder()
@@ -32,5 +32,5 @@ public interface UserRepository extends JpaRepository<User, String> {
         } else {
             System.out.println("✓ Admin existe déjà");
         }
-    }*/
+    }
 }
