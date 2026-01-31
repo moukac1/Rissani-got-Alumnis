@@ -1,0 +1,12 @@
+# Frontend
+rissani-connect/node_modules/
+rissani-connect/.env
+
+# Backend
+connect/target/
+connect/.idea/
+connect/*.log
+
+# OS
+.DS_Store
+
