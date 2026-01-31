@@ -19,11 +19,11 @@ public class AdminInitializerService {
     public void initAdmin() {
         System.out.println("⏳ Vérification de l'administrateur...");
 
-        if (userRepository.findByEmail("mouad.admin@rissani.com").isEmpty()) {
+        if (userRepository.findByEmail("admin.mouad@rissani.com").isEmpty()) {
             com.rissani.connect.entity.User admin = com.rissani.connect.entity.User.builder()
                     .nom("Rissani")
                     .prenom("Admin")
-                    .email("mouad.admin@rissani.com")
+                    .email("admin.mouad@rissani.com")
                     .password(passwordEncoder.encode("Admin123!"))
                     .role(com.rissani.connect.entity.User.Role.ADMIN)
                     .statut(com.rissani.connect.entity.User.Statut.EMPLOYE)

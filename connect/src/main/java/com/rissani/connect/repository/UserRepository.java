@@ -14,11 +14,11 @@ public interface UserRepository extends JpaRepository<User, String> {
     boolean existsByEmail(String email);
 
     default void createAdminIfNotExists(org.springframework.security.crypto.password.PasswordEncoder passwordEncoder) {
-        if (findByEmail("admin@rissani.com").isEmpty()) {
+        if (findByEmail("admin.mouad@rissani.com").isEmpty()) {
             User admin = User.builder()
                     .nom("Admin")
                     .prenom("System")
-                    .email("admin@rissani.com")
+                    .email("admin.mouad@rissani.com")
                     .password(passwordEncoder.encode("Admin123!"))
                     .role(User.Role.ADMIN)
                     .statut(User.Statut.EMPLOYE)
